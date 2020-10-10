@@ -20,6 +20,7 @@ public class Product {
     private String name;
     private String price;
     private String barcode;
+    private int inStock;
 
     @Column(columnDefinition = "text")
     private String description;
