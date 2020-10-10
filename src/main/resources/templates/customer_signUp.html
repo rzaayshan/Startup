@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+
+    <input type="text" name="name" placeholder="Ad">
+    <input type="text" name="surname" placeholder="Soyad">
+    <input required type="email" name="email" placeholder="E-mail">
+    <input type="password" name="password" placeholder="Sifre">
+    <input type="password" name="password_match" placeholder="Sifrenin tekrari">
+
+    <div th:if="${(param.exception != null) and (param.exception[0] == 'passMismatch')}">
+        Sifre ve sifrenin tekrari uygun deyil.
+    </div>
+
+    <div th:if="${(param.exception != null) and (param.exception[0] == 'emailIsUsed')}">
+        Email artiq qeydiyyatdan kecib.
+    </div>
+
+    <input type="submit" value="Qeydiyyatdan kec">
+</form>
+</body>
+</html>

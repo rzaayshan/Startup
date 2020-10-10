@@ -4,8 +4,9 @@ import lombok.Data;
 
 @Data
 public class FormCustomer {
-    public String name;
-    public String surname;
-    public String email;
-    public String password;
+    private String name;
+    private String surname;
+    private String email;
+    private String password;
+    private String password2;
 }
