@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -17,23 +19,21 @@ public class Product {
     private long id;
     private String name;
     private String price;
+    private String barcode;
+
+    @Column(columnDefinition = "text")
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "r_customer_product",
-            joinColumns = {@JoinColumn(name="product_id",
-                    referencedColumnName = "p_id"),
-            },
-            inverseJoinColumns = {@JoinColumn(name = "customer_id",
-                    referencedColumnName = "c_id")})
-    private Customer customer;
+    private Sailer sailer;
 
-    @ManyToOne
-    @JoinTable(name = "r_product_category",
-            joinColumns = {@JoinColumn(name="product_id",
-                    referencedColumnName = "p_id"),
-            },
-            inverseJoinColumns = {@JoinColumn(name = "category_id",
-                    referencedColumnName = "c_id")})
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductFeature> productFeatures;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductPhoto> photoList;
 
 }

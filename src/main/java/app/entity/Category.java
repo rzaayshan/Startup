@@ -1,13 +1,17 @@
 package app.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +21,10 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     Set<Product> products;
+
+    @OneToMany(mappedBy = "category")
+    Set<CategoryFeature> categoryFeatures;
+
+    @OneToOne
+    private ParentCategory parentCategory;
 }

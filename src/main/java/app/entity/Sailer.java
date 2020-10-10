@@ -25,17 +25,17 @@ public class Sailer {
     private String address;
     private int voen;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sailer", fetch = FetchType.LAZY)
     private Set<Product> products;
 
     public Sailer(String name, String surname, String email, String password, String company, String tel, String address, int voen) {
-        this.name=name;
-        this.surname=surname;
-        this.email=email;
-        this.password=password;
-        this.company=company;
-        this.tel=tel;
-        this.address=address;
-        this.voen=voen;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.company = company;
+        this.tel = tel;
+        this.address = address;
+        this.voen = voen;
     }
 }
