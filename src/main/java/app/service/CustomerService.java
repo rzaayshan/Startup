@@ -19,11 +19,10 @@ public class CustomerService {
     private final PasswordEncoder passwordEncoder;
 
     public void signUp(String name, String surname, String email, String password, String password2){
-        //if(!password.equals(password2)) throw new PassMismatchException();
-        System.out.println("email"+email);
-        System.out.println("pass"+password);
-        System.out.println("pass2"+password2);
-        customerRepo.findCustomerByEmail(email).orElseThrow(EmailIsUsedException::new);
+
+        if(!password.equals(password2)) throw new PassMismatchException();
+
+        if(customerRepo.findCustomerByEmail(email).isPresent()) throw new EmailIsUsedException();
 
         Customer customer = new Customer(name, surname, email, passwordEncoder.encode(password));
         customerRepo.save(customer);

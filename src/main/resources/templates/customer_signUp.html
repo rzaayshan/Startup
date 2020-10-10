@@ -13,7 +13,7 @@
     <input type="text" name="surname" placeholder="Soyad">
     <input required type="email" name="email" placeholder="E-mail">
     <input type="password" name="password" placeholder="Sifre">
-    <input type="password" name="password_match" placeholder="Sifrenin tekrari">
+    <input type="password" name="password2" placeholder="Sifrenin tekrari">
 
     <div th:if="${(param.exception != null) and (param.exception[0] == 'passMismatch')}">
         Sifre ve sifrenin tekrari uygun deyil.
