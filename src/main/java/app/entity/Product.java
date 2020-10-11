@@ -26,7 +26,7 @@ public class Product {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Sailer sailer;
+    private Seller seller;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;

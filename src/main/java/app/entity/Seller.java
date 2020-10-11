@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Sailer {
+public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "s_id")
@@ -25,10 +25,10 @@ public class Sailer {
     private String address;
     private int voen;
 
-    @OneToMany(mappedBy = "sailer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
     private Set<Product> products;
 
-    public Sailer(String name, String surname, String email, String password, String company, String tel, String address, int voen) {
+    public Seller(String name, String surname, String email, String password, String company, String tel, String address, int voen) {
         this.name = name;
         this.surname = surname;
         this.email = email;
