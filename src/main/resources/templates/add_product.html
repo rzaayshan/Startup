@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add</title>
@@ -16,19 +17,7 @@
             <select name="select" id="select_parent" class="form-control">
 
                 <option value="-1">Kateqoriya seç</option>
-
-
-                <option value="185">Aksesuar&amp;Çanta</option>
-
-
-                <option value="117">Geyim</option>
-
-
-                <option value="167">Ayaqqabı</option>
-
-
-                <option value="217">Parent_test</option>
-
+                <option th:each="cat : ${parent_cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
             </select>
         </div>
 
@@ -36,11 +25,6 @@
             <select name="select" id="select_child" class="form-control">
 
                 <option value="-1">Kateqoriya seç</option>
-
-                <option value="186">Qadın aksesuar&amp;çanta</option>
-
-                <option value="207">Kişi aksesuar&amp;çanta</option>
-
             </select>
         </div>
 
@@ -48,69 +32,6 @@
             <select name="select" id="select_sub_child" class="form-control">
 
                 <option value="-1">Kateqoriya seç</option>
-
-
-                <option value="188">Bel çantası</option>
-
-
-                <option value="187">Çiyin çantası</option>
-
-
-                <option value="189">Əl çantası</option>
-
-
-                <option value="190">Casual çanta</option>
-
-
-                <option value="191">Sport çanta</option>
-
-
-                <option value="192">Çamadan</option>
-
-
-                <option value="193">Məktəb çantası</option>
-
-
-                <option value="194">Toy&amp;Mərasim çantası</option>
-
-
-                <option value="195">Kosmetika çantası</option>
-
-
-                <option value="196">Kompüter çantası</option>
-
-
-                <option value="197">Qol saatı</option>
-
-
-                <option value="198">Kələğayı</option>
-
-
-                <option value="199">Gün eynəkləri</option>
-
-
-                <option value="200">Cüzdan</option>
-
-
-                <option value="201">Şapqa</option>
-
-
-                <option value="202">Şərf</option>
-
-
-                <option value="203">Əlcək</option>
-
-
-                <option value="204">Kəmər</option>
-
-
-                <option value="205">Saç aksesuarı</option>
-
-
-                <option value="206">Çətir</option>
-
-
-                <option value="219">Child_test</option>
 
             </select>
         </div>
@@ -124,7 +45,6 @@
     <hr>
 
 
-
     <!--				<div class="card-title">-->
     <!--					<h3 class="text-center title-2">Məhsul anketi</h3>-->
     <!--				</div>-->
@@ -134,7 +54,7 @@
 
         <script type="text/javascript">
             var arr = []; //Burada butun divleri tanimaq ve check etmek ucundur. Ve burada olanlarin hamisi cat_feat evvelceden yazilan olub offer deyil.
-            function add_me(name){
+            function add_me(name) {
                 arr.push(name);
             }
 
@@ -175,7 +95,8 @@
 
     <div id="buttons" class="flex-container" style="display: flex;">
         <div id="buttons-left" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-            <button type="button" class="btn btn-primary" id="add_offer" style="margin: 2px;">Digər özəllik daxil et</button>
+            <button type="button" class="btn btn-primary" id="add_offer" style="margin: 2px;">Digər özəllik daxil et
+            </button>
             <!--						<button type="button" class="btn btn-primary" id="relation_product" style="margin: 2px;">Alt məhsul əlavə et</button>-->
             <!--						<button type="button" class="btn btn-primary" id="add_photo_modal" style="margin: 2px;">Rəsm yüklə</button>-->
             <!--						<button type="button" class="btn btn-danger" id="reset_form">Sıfırla</button>-->
@@ -201,7 +122,8 @@
                         <div class="col-lg-12" style="margin:0!important;">
                             <!-- TOP CAMPAIGN-->
                             <!--										<div class="top-campaign">-->
-                            <h3 class="title-3 m-b-30" style="text-align: center; margin-top: 25px;">Əlavə özəlliklər</h3>
+                            <h3 class="title-3 m-b-30" style="text-align: center; margin-top: 25px;">Əlavə
+                                özəlliklər</h3>
                             <hr>
                             <div class="table-responsive" style=" height: 250px; margin:8px;">
                                 <table class="table table-top-campaign" style="overflow: scroll;">
@@ -223,8 +145,10 @@
 
                     <div class="form-group" style="margin: auto;">
 
-                        <input placeholder="Ad" type="text" id="name_feat" style="padding: 3px; border: 1px solid #d3d3d3">
-                        <input placeholder="Dəyər" type="text" id="value_feat" style="padding: 3px; border: 1px solid #d3d3d3">
+                        <input placeholder="Ad" type="text" id="name_feat"
+                               style="padding: 3px; border: 1px solid #d3d3d3">
+                        <input placeholder="Dəyər" type="text" id="value_feat"
+                               style="padding: 3px; border: 1px solid #d3d3d3">
                         <button type="button" class="btn btn-outline-success btn-sm" id="add_feat_item">+</button>
                     </div>
 
@@ -232,7 +156,8 @@
                     </div>
 
                     <div class="modal-footer form-group">
-                        <button id="add_feat_modal" type="button" class="btn btn-primary" style="padding: 10px;">Saxla</button>
+                        <button id="add_feat_modal" type="button" class="btn btn-primary" style="padding: 10px;">Saxla
+                        </button>
                     </div>
                 </div>
 
