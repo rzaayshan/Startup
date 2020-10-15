@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="form-group col-md-3">
-            <select name="select" id="select_parent" class="form-control">
+            <select name="select" id="parent" class="form-control">
 
                 <option value="-1">Kateqoriya seç</option>
                 <option th:each="cat : ${parent_cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
@@ -22,14 +22,13 @@
         </div>
 
         <div class="form-group col-md-3">
-            <select name="select" id="select_child" class="form-control">
-
+            <select name="select" id="subParent" class="form-control">
                 <option value="-1">Kateqoriya seç</option>
             </select>
         </div>
 
         <div class="form-group col-md-3">
-            <select name="select" id="select_sub_child" class="form-control">
+            <select name="select" id="child" class="form-control">
 
                 <option value="-1">Kateqoriya seç</option>
 
@@ -44,16 +43,10 @@
 
     <hr>
 
-
-    <!--				<div class="card-title">-->
-    <!--					<h3 class="text-center title-2">Məhsul anketi</h3>-->
-    <!--				</div>-->
-
     <div class="row" id="cat_feat_form">
 
-
         <script type="text/javascript">
-            var arr = []; //Burada butun divleri tanimaq ve check etmek ucundur. Ve burada olanlarin hamisi cat_feat evvelceden yazilan olub offer deyil.
+            var arr = [];
             function add_me(name) {
                 arr.push(name);
             }
@@ -97,10 +90,6 @@
         <div id="buttons-left" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
             <button type="button" class="btn btn-primary" id="add_offer" style="margin: 2px;">Digər özəllik daxil et
             </button>
-            <!--						<button type="button" class="btn btn-primary" id="relation_product" style="margin: 2px;">Alt məhsul əlavə et</button>-->
-            <!--						<button type="button" class="btn btn-primary" id="add_photo_modal" style="margin: 2px;">Rəsm yüklə</button>-->
-            <!--						<button type="button" class="btn btn-danger" id="reset_form">Sıfırla</button>-->
-
         </div>
 
         <div id="buttons-right" style="">
@@ -165,6 +154,29 @@
         </div>
     </div>
     <!------------------------------------------------------------------------------------------------>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#parent").change(function () {
+                $.get("/getChilds", {select: $("#parent").val()}, function (data) {
+                    $("#subParent").empty();
+                    $.each(data, function (index, row) {
+                        $("#subParent").append("<option value='" + row.id + "'>" + row.name + " </option>");
+                    });
+                });
+            });
+
+            $("#subParent").change(function () {
+                $.get("/getChilds", {select: $("#subParent").val()}, function (data) {
+                    $("#child").empty();
+                    $.each(data, function (index, row) {
+                        $("#child").append("<option value='" + row.id + "'>" + row.name + " </option>");
+                    });
+                });
+            })
+        });
+    </script>
 </div>
 </body>
 </html>

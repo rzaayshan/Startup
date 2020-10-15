@@ -1,7 +1,7 @@
 package app.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,12 +30,14 @@ public class Category {
     private Set<Product> products;
 
     @OneToMany(mappedBy = "category")
+    @JsonBackReference
     Set<CategoryFeature> categoryFeatures;
 
-    @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name = "parent_category_id")
+    @ManyToOne
+    @JsonIgnoreProperties("subCategory")
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
+    @JsonIgnoreProperties("parent")
     private Set<Category> subCategory;
 }

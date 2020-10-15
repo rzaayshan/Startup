@@ -1,5 +1,6 @@
 package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,6 @@ public class CategoryFeature {
     private String featureValue;
 
     @ManyToOne
+    @JsonManagedReference
     private Category category;
 }
