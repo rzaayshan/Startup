@@ -11,31 +11,48 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Seller {
+public class Seller{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "s_id")
+    @Column(name = "u_id")
     private long id;
     private String name;
     private String surname;
     private String email;
     private String password;
     private String company;
-    private String tel;
+    private String phone;
     private String address;
-    private int voen;
+    private String tin;
+    private String token;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
     private Set<Product> products;
 
-    public Seller(String name, String surname, String email, String password, String company, String tel, String address, int voen) {
+    public Seller(String name, String surname, String email, String password, String company, String phone, String address, String tin) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.company = company;
-        this.tel = tel;
+        this.phone = phone;
         this.address = address;
-        this.voen = voen;
+        this.tin = tin;
     }
+
+    public Seller(String name, String surname, String email, String password, String company, String phone, String address, String tin, String token) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.company = company;
+        this.phone = phone;
+        this.address = address;
+        this.tin = tin;
+        this.token=token;
+
+    }
+
+//    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+//    private Set<Role> roles;
 }

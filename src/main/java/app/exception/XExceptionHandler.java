@@ -18,10 +18,41 @@ public class XExceptionHandler {
 
     @ExceptionHandler(EmailIsUsedException.class)
     public RedirectView handleEmailIsUsed(Model model){
-        System.out.println("In Handler Email");
         model.addAttribute("exception", "emailIsUsed");
         return new RedirectView("/customer/signUp");
     }
+
+    @ExceptionHandler(InvalidSMSRequestException.class)
+    public RedirectView handleInvalidSMSReqExc(Model model){
+        model.addAttribute("exception", "InvalidSMSRequestException");
+        return new RedirectView("/seller/signUp");
+    }
+
+    @ExceptionHandler(TokenMismatchException.class)
+    public RedirectView handleTokenMismatchExc(Model model, TokenMismatchException exc){
+        model.addAttribute("exception", "InvalidSMSRequestException");
+        return new RedirectView(String.format("/verify?email=%s", exc.email));
+    }
+
+    @ExceptionHandler(InvalidPhoneNumberException.class)
+    public RedirectView handleInvalidPhoneEx(Model model){
+        model.addAttribute("exception", "InvalidPhoneNumEx}");
+        return new RedirectView("/seller/signUp");
+    }
+
+    @ExceptionHandler(InvalidTinException.class)
+    public RedirectView handleInvalidTinEx(Model model){
+        model.addAttribute("exception", "InvalidTinEx}");
+        return new RedirectView("/seller/signUp");
+    }
+
+    @ExceptionHandler(SignUpEmptyInputEx.class)
+    public RedirectView handleSignUpEmptyEx(Model model){
+        model.addAttribute("exception", "SignUpEmpty");
+        return new RedirectView("/seller/signUp");
+    }
+
+
 
 
 }

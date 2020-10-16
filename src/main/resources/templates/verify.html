@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    <input type="text" name="token">
+    <input type="submit">
+    <div th:if="${(param.exception != null) and (param.exception[0] == 'passMismatch')}">
+        Kod yanlışdır.
+    </div>
+</form>
+
+
+</body>
+</html>

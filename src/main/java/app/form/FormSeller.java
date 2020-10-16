@@ -10,7 +10,7 @@ public class FormSeller {
     private String password;
     private String password2;
     private String company;
-    private String tel;
+    private String phone;
     private String address;
-    private int voen;
+    private String tin;
 }
