@@ -12,91 +12,74 @@
     </div>
     <hr>
 
-    <div class="row">
-        <div class="form-group col-md-3">
-            <select name="select" id="parent" class="form-control">
+    <form method="post">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <select name="category" id="parent" class="form-control">
+                    <optgroup th:each="cat : ${cats}" th:value="${cat.getId()}" th:label="${cat.getName()}">
+                        <option th:each="child : ${cat.getSubCategory()}" th:value="${child.getId()}" th:text="${child.getName()}"></option>
+                    </optgroup>
+                </select>
+            </div>
 
-                <option value="-1">Kateqoriya seç</option>
-                <option th:each="cat : ${parent_cats}" th:value="${cat.id}" th:text="${cat.name}"></option>
-            </select>
+            <div class="form-group col-md-3">
+                <button type="button" class="btn btn-primary" id="choose_cat">Seç</button>
+            </div>
+
         </div>
 
-        <div class="form-group col-md-3">
-            <select name="select" id="subParent" class="form-control">
-                <option value="-1">Kateqoriya seç</option>
-            </select>
+        <hr>
+
+        <div class="row" id="cat_feat_form">
+
+            <script type="text/javascript">
+                var arr = [];
+                function add_me(name) {
+                    arr.push(name);
+                }
+
+            </script>
+            <div class="form-group col-md-3">
+                <label for="barcode">Barkod <span style="color: red;">*</span></label>
+                <input type="number" id="barcode" class="form-control" name="barcode">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="title">Ad <span style="color: red;">*</span></label>
+                <input type="text" id="title" class="form-control" name="name">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="price">Qiymət (AZN) <span style="color: red;">*</span></label>
+                <input type="number" id="price" class="form-control" name="price">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="stock">Miqdar <span style="color: red;">*</span></label>
+                <input type="number" id="stock" class="form-control" name="inStock">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="stock">Description <span style="color: red;">*</span></label>
+                <input type="text" id="desc" class="form-control" name="description">
+            </div>
+
         </div>
 
-        <div class="form-group col-md-3">
-            <select name="select" id="child" class="form-control">
+        <span style="color: red; display: block;" id="request_field">* Vacib sahələr</span>
 
-                <option value="-1">Kateqoriya seç</option>
+        <div id="buttons" class="flex-container" style="display: flex;">
+            <div id="buttons-left" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <button type="button" class="btn btn-primary" id="add_offer" style="margin: 2px;">Digər özəllik daxil et
+                </button>
+            </div>
 
-            </select>
+            <div id="buttons-right" style="">
+                <button type="submit" class="btn btn-success" id="send_product">Göndər</button>
+            </div>
         </div>
 
-        <div class="form-group col-md-3">
-            <button type="button" class="btn btn-primary" id="choose_cat">Seç</button>
-        </div>
-
-    </div>
-
-    <hr>
-
-    <div class="row" id="cat_feat_form">
-
-        <script type="text/javascript">
-            var arr = [];
-            function add_me(name) {
-                arr.push(name);
-            }
-
-        </script>
-        <div class="form-group col-md-3">
-            <label for="barcode">Barkod <span style="color: red;">*</span></label>
-            <input type="number" id="barcode" class="form-control">
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="title">Ad <span style="color: red;">*</span></label>
-            <input type="text" id="title" class="form-control">
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="price">Qiymət (AZN) <span style="color: red;">*</span></label>
-            <input type="number" id="price" class="form-control">
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="discountprice">Endirim (AZN)</label>
-            <input type="number" id="discountprice" class="form-control">
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="stock">Miqdar <span style="color: red;">*</span></label>
-            <input type="number" id="stock" class="form-control">
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="description">Açıqlama</label>
-            <input type="text" id="description" class="form-control">
-        </div>
-
-    </div>
-
-    <span style="color: red; display: block;" id="request_field">* Vacib sahələr</span>
-
-    <div id="buttons" class="flex-container" style="display: flex;">
-        <div id="buttons-left" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-            <button type="button" class="btn btn-primary" id="add_offer" style="margin: 2px;">Digər özəllik daxil et
-            </button>
-        </div>
-
-        <div id="buttons-right" style="">
-            <button type="button" class="btn btn-success" id="send_product">Göndər</button>
-        </div>
-    </div>
-
+    </form>
     <!------------------------------------------------------------------------------------------------>
     <!-- offers form -->
     <div class="modal_feat">

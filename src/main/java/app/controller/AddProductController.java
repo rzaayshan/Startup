@@ -1,12 +1,14 @@
 package app.controller;
 
 import app.entity.Category;
+import app.entity.Product;
 import app.service.CategoryService;
 import app.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -18,22 +20,31 @@ public class AddProductController {
     private final CategoryService categoryService;
 
     @GetMapping("add-product")
-    public ModelAndView addProduct(){
+    public ModelAndView viewBoard(){
         ModelAndView mav = new ModelAndView("add_product");
-        mav.addObject("parent_cats", categoryService.getParentCategories());
+        mav.addObject("cats", categoryService.getAll());
         return mav;
+    }
+
+    @PostMapping("add-product")
+    public RedirectView addProduct(Product product, Long category){
+        System.out.println(product);
+        System.out.println(category + "Category!!!!");
+        product.setCategory(categoryService.getById(category));
+        productService.insert(product);
+        return new RedirectView("/success");
     }
 
     @GetMapping("all")
     public List<Category> get(){
-        return categoryService.getById();
+        return categoryService.getAll();
     }
 
-    @RequestMapping(value="/getChilds")
-    @ResponseBody
-    public List<Category> getChildren(@RequestParam(value="id", required = false, defaultValue="") Long id)  {
-        System.out.println(id);
-        System.out.println(categoryService.getChilds(id));
-        return categoryService.getChilds(id);
-    }
+//    @RequestMapping(value="/getChilds")
+//    @ResponseBody
+//    public List<Category> getChildren(@RequestParam(value="id", required = false, defaultValue="") Long id)  {
+//        System.out.println(id);
+//        System.out.println(categoryService.getChilds(id));
+//        return categoryService.getChilds(id);
+//    }
 }
