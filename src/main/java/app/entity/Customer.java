@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +21,9 @@ public class Customer {
     private String surname;
     private String email;
     private String password;
+
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Bag bag;
 
     public Customer(String name, String surname, String email, String password) {
         this.name=name;
