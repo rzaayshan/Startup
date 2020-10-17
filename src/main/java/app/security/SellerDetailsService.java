@@ -23,7 +23,7 @@ public class SellerDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String company) throws UsernameNotFoundException {
-        return sellerService.findUserForLogin(company)
+        return sellerService.findSellerByCompany(company)
                 .map(SellerDetailsService::sellerToSellerDetails).orElseThrow(()->new UsernameNotFoundException("User not found"));
     }
 }

@@ -12,15 +12,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig{
 
-    @Configuration
-    @Order(1)
+//    @Configuration
+//    @Order(1)
     public static class CustomerSecConf extends WebSecurityConfigurerAdapter {
         @Override
         public void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/admin*").authorizeRequests().anyRequest().permitAll()
+            http.authorizeRequests()
+                    .antMatchers("/", "/signup", "/index", "/images/**", "/css/**", "/js/**", "/sass/**","/fonts/**","/js/**","/vendor.fontawesome-free/**")
+                    .permitAll()
                     // log in
                     .and().formLogin().loginPage("/customer/login")
-                    .failureUrl("/loginCustomer?error=loginError").defaultSuccessUrl("/dashboard")
+                    .failureUrl("/loginCustomer?error=loginError").defaultSuccessUrl("/customerDashboard")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
                     // logout
                     .and().logout().logoutUrl("/customer/logout").logoutSuccessUrl("/")
                     .clearAuthentication(true)
@@ -32,14 +36,18 @@ public class SecurityConfig{
     }
 
     @Configuration
-    @Order(2)
+    @Order(1)
     public static class SellerSecConf extends WebSecurityConfigurerAdapter{
         @Override
         public void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/admin*").authorizeRequests().anyRequest().permitAll()//.hasRole("SELLER")
+            http.authorizeRequests()
+                    .antMatchers("/", "/signup", "/index", "/images/**", "/css/**", "/js/**", "/sass/**","/fonts/**","/js/**","/vendor.fontawesome-free/**")
+                    .permitAll()
                     // log in
-                    .and().formLogin().loginPage("/seller/login")
-                    .failureUrl("/loginSeller?error=loginError").defaultSuccessUrl("/sellerDashboard")
+                    .and().formLogin().loginPage("/seller/signIn")
+                    .failureUrl("/seller/signIn?error=loginError").defaultSuccessUrl("/sellerDashboard")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
                     // logout
                     .and().logout().logoutUrl("/seller/logout").logoutSuccessUrl("/")
                     .clearAuthentication(true)

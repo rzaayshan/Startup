@@ -17,24 +17,27 @@ public class SellerController {
 
     @GetMapping("/signUp")
     public String signUp_get(){
-        return "seller_signUp";
+        return "signup_seller";
     }
 
     @PostMapping("/signUp")
     public RedirectView signUp_post(FormSeller form){
         sellerService.signUp(form.getName(), form.getSurname(), form.getEmail(), form.getPassword(), form.getPassword2(),
-                form.getCompany(), form.getTel(), form.getAddress(), form.getVoen());
-        return new RedirectView("/seller/signIn");
+                form.getCompany(), form.getPhone(), form.getAddress(), form.getTin());
+
+        String email=form.getEmail();
+        return new RedirectView(String.format("/verify?email=%s",email));
     }
 
     @GetMapping("/signIn")
     public String signIn_get(){
-        return "seller_signIn";
+        return "login_seller";
     }
 
     @PostMapping("/signIn")
     public RedirectView signIn_post(){
         return new RedirectView("/sellerDashboard");
     }
+
 
 }

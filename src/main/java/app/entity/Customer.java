@@ -6,16 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
+
+import java.util.Set;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Customer {
+public class Customer{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "c_id")
+    @Column(name = "u_id")
     private long id;
     private String name;
     private String surname;
@@ -31,4 +35,7 @@ public class Customer {
         this.email=email;
         this.password=password;
     }
+
+//    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+//    private Set<Role> roles;
 }
