@@ -23,7 +23,7 @@ public class CustomerController {
     @PostMapping("/signUp")
     public RedirectView signUp_post(FormCustomer form){
         customerService.signUp(form.getName(), form.getSurname(), form.getEmail(), form.getPassword(), form.getPassword2());
-        return new RedirectView("/signIn");
+        return new RedirectView("/customer/signIn");
     }
 
     @GetMapping("/signIn")

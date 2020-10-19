@@ -1,5 +1,6 @@
 package app.service;
 
+import app.entity.Bag;
 import app.entity.Customer;
 import app.exception.EmailIsUsedException;
 import app.exception.PassMismatchException;
@@ -25,6 +26,7 @@ public class CustomerService {
         if(customerRepo.findCustomerByEmail(email).isPresent()) throw new EmailIsUsedException();
 
         Customer customer = new Customer(name, surname, email, passwordEncoder.encode(password));
+        customer.setBag(new Bag(customer));
         customerRepo.save(customer);
     }
 
