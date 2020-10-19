@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -27,7 +28,7 @@ public class Seller{
     private String token;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
-    private Set<Product> products;
+    private List<Product> products;
 
     public Seller(String name, String surname, String email, String password, String company, String phone, String address, String tin) {
         this.name = name;

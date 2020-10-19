@@ -13,7 +13,6 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Product {
     @Id
@@ -29,15 +28,19 @@ public class Product {
     private String description;
 
     @ManyToOne
+    @JsonIgnore
     private Seller seller;
 
     @ManyToOne
+    @JsonIgnore
     private Category category;
 
     @OneToMany(mappedBy = "product")
-    private Set<ProductFeature> productFeatures;
+    @JsonIgnore
+    private List<ProductFeature> productFeatures;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<ProductPhoto> photoList;
 
 }

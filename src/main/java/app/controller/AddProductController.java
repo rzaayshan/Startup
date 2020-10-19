@@ -5,7 +5,6 @@ import app.entity.Product;
 import app.service.CategoryService;
 import app.service.ProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -28,8 +27,6 @@ public class AddProductController {
 
     @PostMapping("add-product")
     public RedirectView addProduct(Product product, Long category){
-        System.out.println(product);
-        System.out.println(category + "Category!!!!");
         product.setCategory(categoryService.getById(category));
         productService.insert(product);
         return new RedirectView("/success");
@@ -39,12 +36,4 @@ public class AddProductController {
     public List<Category> get(){
         return categoryService.getAll();
     }
-
-//    @RequestMapping(value="/getChilds")
-//    @ResponseBody
-//    public List<Category> getChildren(@RequestParam(value="id", required = false, defaultValue="") Long id)  {
-//        System.out.println(id);
-//        System.out.println(categoryService.getChilds(id));
-//        return categoryService.getChilds(id);
-//    }
 }

@@ -21,8 +21,8 @@ public class ViewProductController {
     private final CategoryService categoryService;
 
     @GetMapping("products")
-    public String vb(){
-        return productService.getAll().toString();
+    public List<Product> vb(){
+        return productService.getAll();
     }
 
     @GetMapping("cats")

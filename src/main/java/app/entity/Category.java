@@ -2,9 +2,12 @@ package app.entity;
 
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,8 +17,7 @@ import java.util.Set;
 @Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
-public class Category implements Serializable{
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +27,13 @@ public class Category implements Serializable{
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private Set<Product> products;
+    private List<Product> products;
 
     @OneToMany(mappedBy = "category")
-    List<CategoryFeature> categoryFeatures;
+    Set<CategoryFeature> categoryFeatures;
 
     @ManyToOne
-    @JsonIgnore //----important
+    @JsonIgnore
     private Category parent;
 
     @OneToMany
