@@ -12,7 +12,7 @@
     </div>
     <hr>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="form-group col-md-3">
                 <select name="category" id="parent" class="form-control">
@@ -64,6 +64,7 @@
                 <input type="text" id="desc" class="form-control" name="description">
             </div>
 
+            <input id="file" class="file-upload" type="file" accept="image/*" name="pp"/>
         </div>
 
         <span style="color: red; display: block;" id="request_field">* Vacib sahələr</span>

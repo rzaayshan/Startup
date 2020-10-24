@@ -23,6 +23,7 @@ public class Product {
     private String price;
     private String barcode;
     private int inStock;
+    private String photo;
 
     @Column(columnDefinition = "text")
     private String description;
@@ -39,8 +40,8 @@ public class Product {
     @JsonIgnore
     private List<ProductFeature> productFeatures;
 
-    @OneToMany(mappedBy = "product")
-    @JsonIgnore
-    private List<ProductPhoto> photoList;
+//    @OneToMany(mappedBy = "product")
+//    @JsonIgnore
+//    private List<ProductPhoto> photoList;
 
 }
