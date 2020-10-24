@@ -18,12 +18,13 @@ import java.util.Set;
 public class Customer{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "u_id")
+    @Column(name = "c_id")
     private long id;
     private String name;
     private String surname;
     private String email;
     private String password;
+    private String role;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Bag bag;
@@ -35,6 +36,4 @@ public class Customer{
         this.password=password;
     }
 
-//    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
-//    private Set<Role> roles;
 }

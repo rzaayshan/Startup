@@ -1,5 +1,6 @@
 package app.security;
 
+import app.entity.Seller;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;

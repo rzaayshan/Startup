@@ -22,7 +22,7 @@ public class VerifyController {
 
     @PostMapping
     public RedirectView verify_post(@RequestParam(value = "email") String email, @RequestParam String token){
-        sellerService.checkToken(token,email);
+//        sellerService.checkToken(token,email);
         return new RedirectView("/seller/signIn");
     }
 }

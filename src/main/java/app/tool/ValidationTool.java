@@ -1,4 +1,4 @@
-package app.Tool;
+package app.tool;
 
 import app.exception.EmailIsUsedException;
 import app.exception.InvalidPhoneNumberException;

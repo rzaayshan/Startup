@@ -1,6 +1,6 @@
 package app.service;
 
-import app.Tool.ValidationTool;
+import app.tool.ValidationTool;
 import app.entity.Seller;
 import app.exception.TokenMismatchException;
 import app.repo.SellerRepo;
@@ -30,20 +30,16 @@ public class SellerService {
                 passwordEncoder.encode(password) , company, phone, address, tin, Integer.toString(token));
         System.err.println(seller);
         sellerRepo.save(seller);
-        smsService.createSMSRequest(phone, token);
+//        smsService.createSMSRequest(phone, token);
         System.err.println("ses");
-    }
-
-    public Optional<Seller> findUserForLogin(String email) {
-        return sellerRepo.findSellerByEmail(email);
-    }
-
-    public Optional<Seller> findSellerByCompany(String company){
-        return sellerRepo.findSellerByCompany(company);
     }
 
     public void checkToken(String token, String email) {
         if(!sellerRepo.findSellerByEmail(email).orElseThrow(RuntimeException::new).getToken().equals(token))
             throw new TokenMismatchException(email);
+    }
+
+    public Optional<Seller> findSellerByEmail(String email) {
+        return sellerRepo.findSellerByEmail(email);
     }
 }

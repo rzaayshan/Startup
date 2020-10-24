@@ -31,7 +31,7 @@ public class CustomerService {
     }
 
 
-    public Optional<Customer> findUserForLogin(String email) {
+    public Optional<Customer> findCustomerByEmail(String email) {
         return customerRepo.findCustomerByEmail(email);
     }
 }

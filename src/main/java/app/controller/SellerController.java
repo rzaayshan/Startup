@@ -29,14 +29,10 @@ public class SellerController {
         return new RedirectView(String.format("/verify?email=%s",email));
     }
 
-    @GetMapping("/signIn")
-    public String signIn_get(){
-        return "login_seller";
-    }
 
-    @PostMapping("/signIn")
-    public RedirectView signIn_post(){
-        return new RedirectView("/sellerDashboard");
+    @GetMapping("/dashboard")
+    public String handle_getSeller(){
+        return "sellerDashboard";
     }
 
 

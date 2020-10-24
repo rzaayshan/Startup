@@ -15,7 +15,7 @@ import java.util.Set;
 public class Seller{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "u_id")
+    @Column(name = "s_id")
     private long id;
     private String name;
     private String surname;
@@ -26,6 +26,7 @@ public class Seller{
     private String address;
     private String tin;
     private String token;
+    private String role;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
     private List<Product> products;
@@ -54,6 +55,4 @@ public class Seller{
 
     }
 
-//    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
-//    private Set<Role> roles;
 }
