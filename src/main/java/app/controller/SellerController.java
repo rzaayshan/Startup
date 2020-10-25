@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.form.FormSeller;
+import app.form.FormStyle;
 import app.service.SellerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,12 +22,9 @@ public class SellerController {
     }
 
     @PostMapping("/signUp")
-    public RedirectView signUp_post(FormSeller form){
-        sellerService.signUp(form.getName(), form.getSurname(), form.getEmail(), form.getPassword(), form.getPassword2(),
-                form.getCompany(), form.getPhone(), form.getAddress(), form.getTin());
-
-        String email=form.getEmail();
-        return new RedirectView(String.format("/verify?email=%s",email));
+    public RedirectView signUp_post(FormSeller seller, FormStyle style){
+        sellerService.register(seller, style);
+        return new RedirectView(String.format("/verify?email=%s",seller.getEmail()));
     }
 
 
