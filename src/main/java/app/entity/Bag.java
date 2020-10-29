@@ -33,4 +33,9 @@ public class Bag {
         this.customer = customer;
         this.products = new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        return String.format("Bag{id=%d}", id);
+    }
 }

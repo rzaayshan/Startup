@@ -24,20 +24,21 @@ public class CustomerSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.antMatcher("/customer/**")
                 .authorizeRequests()
-                .antMatchers("/", "/signup", "/index", "/images/**", "/css/**", "/js/**", "/sass/**","/fonts/**","/js/**","/vendor.fontawesome-free/**")
+                .antMatchers("/", "/customer/signUp", "/index", "/images/**", "/css/**", "/js/**", "/sass/**","/fonts/**","/js/**","/vendor/**")
                 .permitAll()
                 .antMatchers("/customer/**").hasRole("CUSTOMER")
                 .and()
                 .formLogin().loginPage("/customer/login").permitAll()
+//                .loginProcessingUrl("/customer/process-login")
+
                 .defaultSuccessUrl("/customer/dashboard")
-                .failureUrl("/customer/login?error=loginError")
+                .failureUrl("/customer/login?error=false")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
                 .logout()
                 .logoutUrl("/customer-panel/process-logout")
                 .logoutSuccessUrl("/customer-panel/login?logout")
-                .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and()
@@ -47,6 +48,7 @@ public class CustomerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        System.err.println("customer");
         auth.userDetailsService(customerDetailsService);
     }
 }

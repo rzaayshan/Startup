@@ -22,22 +22,23 @@ public class SellerSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();
 
-        http
+        http//.antMatcher("/customer/**")
                 .authorizeRequests()
-                .antMatchers("/", "/signup", "/index", "/images/**", "/css/**", "/js/**", "/sass/**","/fonts/**","/js/**","/vendor.fontawesome-free/**")
+                .antMatchers("/verify","/", "/seller/signUp", "/index", "/images/**", "/css/**", "/js/**", "/sass/**","/fonts/**","/js/**","/vendor/**")
                 .permitAll()
                 .antMatchers("/seller/**").hasRole("SELLER")
                 .and()
                 .formLogin().loginPage("/seller-panel/login")
+//                .loginProcessingUrl("/customer/process-login")
+
                 .defaultSuccessUrl("/seller/dashboard")
-                .failureUrl("/seller-panel/login?error=loginError")
+                .failureUrl("/seller-panel/login?error=false")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
                 .logout()
                 .logoutUrl("/seller-panel/process-logout")
                 .logoutSuccessUrl("/seller-panel/login?logout")
-                .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and()
@@ -47,6 +48,7 @@ public class SellerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        System.err.println("seller");
         auth.userDetailsService(sellerDetailsService);
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class SellerLoginController {
     @GetMapping("/login")
     public String signIn_get(){
-        return "login_seller";
+        return "login_sailer";
     }
 
     @PostMapping("/login")

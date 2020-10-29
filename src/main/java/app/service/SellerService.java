@@ -51,6 +51,8 @@ public class SellerService {
 //        validationTool.checkPhone(seller.getPhone());
 
         int token = smsService.createSMSToken();
+        System.out.println(seller.toString());
+        System.out.println(style.toString());
         Style style_saved = new Style(style.getFont(), style.getColor_back(), style.getColor());
         styleRepo.save(style_saved);
 

@@ -17,7 +17,7 @@ public class CustomerController {
 
     @GetMapping("/signUp")
     public String signUp_get(){
-        return "customer_signUp";
+        return "customer_signup";
     }
 
     @PostMapping("/signUp")
