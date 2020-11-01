@@ -1,166 +1,1141 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-      lang="en">
+		lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Add</title>
+	<!-- Required meta tags-->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="au theme template">
+	<meta name="author" content="Hau Nguyen">
+	<meta name="keywords" content="au theme template">
+
+	<!-- Title Page-->
+	<title>Add Product</title>
+
+	<!-- Fontfaces CSS-->
+	<link href="/seller/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+	<link href="/seller/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+	<link href="/seller/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+	<link href="/seller/css/font-face.css" rel="stylesheet" media="all">
+
+	<!-- Bootstrap CSS-->
+	<link href="/seller/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+	<!-- /admin_sailer/assets/vendor CSS-->
+	<link href="/seller/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+	<link href="/seller/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+	<link href="/seller/vendor/wow/animate.css" rel="stylesheet" media="all">
+	<link href="/seller/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+	<link href="/seller/vendor/slick/slick.css" rel="stylesheet" media="all">
+	<link href="/seller/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+	<link href="/seller/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+	<!--Toastr CSS-->
+	<link href="/seller/toastr/toastr.css" rel="stylesheet" media="all">
+	<link href="/seller/toastr/toastr.min.css" rel="stylesheet" media="all">
+
+	<!-- Main CSS-->
+	<link href="/seller/css/theme.css" rel="stylesheet" media="all">
 </head>
-<body>
-<div class="card-body">
-    <div class="card-title">
-        <h3 class="text-center title-2">Kateqoriyalar</h3>
-    </div>
-    <hr>
 
-    <form method="post" enctype="multipart/form-data">
-        <div class="row">
-            <div class="form-group col-md-3">
-                <select name="category" id="parent" class="form-control">
-                    <optgroup th:each="cat : ${cats}" th:value="${cat.getId()}" th:label="${cat.getName()}">
-                        <option th:each="child : ${cat.getSubCategory()}" th:value="${child.getId()}" th:text="${child.getName()}"></option>
-                    </optgroup>
-                </select>
-            </div>
+<body class="animsition">
 
-            <div class="form-group col-md-3">
-                <button type="button" class="btn btn-primary" id="choose_cat">Seç</button>
-            </div>
+	<div class="page-wrapper">
+		<!-- HEADER MOBILE-->
+		<header class="header-mobile d-block d-lg-none">
+			<div class="header-mobile__bar">
+				<div class="container-fluid">
+					<div class="header-mobile-inner">
+						<a class="logo" href="index.html">
+							<img src="images/icon/logo.png" alt="CoolAdmin" />
+						</a>
+						<button class="hamburger hamburger--slider" type="button">
+							<span class="hamburger-box">
+								<span class="hamburger-inner"></span>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<nav class="navbar-mobile">
+				<div class="container-fluid">
+					<ul class="navbar-mobile__list list-unstyled">
+						<li class="has-sub ">
+							<a class="js-arrow" href="inbox.html">
+								<i class="fas fa-tachometer-alt"></i>Dashboard</a>
+						</li>
+						<li>
+							<a href="product.html">
+								<i class="fas fa-chart-bar"></i>Product</a>
+						</li>
+						<li>
+							<a href="add_product.html" class="active">
+								<i class="fas fa-table"></i>Add product</a>
+						</li>
+						<li>
+							<a href="sold_product.html">
+								<i class="far fa-check-square"></i>Sold products</a>
+						</li>
+						<li>
+							<a href="calendar.html">
+								<i class="fas fa-calendar-alt"></i>Cargo</a>
+						</li>
 
-        </div>
+						<li class="">
+							<a href="report.html">
+								<i class="fas fa-copy"></i>Report</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- END HEADER MOBILE-->
 
-        <hr>
+		<!-- MENU SIDEBAR-->
+		<aside class="menu-sidebar d-none d-lg-block">
+			<div class="logo">
+				<a href="#">
+					<img src="images/icon/logo.png" alt="Cool Admin" />
+				</a>
+			</div>
+			<div class="menu-sidebar__content js-scrollbar1">
+				<nav class="navbar-sidebar">
+					<ul class="list-unstyled navbar__list">
+						<li class="has-sub">
+							<a class="js-arrow " href="inbox.html">
+								<i class="fas fa-tachometer-alt"></i>Dashboard</a>
+						</li>
+						<li>
+							<a href="/products">
+								<i class="fas fa-chart-bar"></i>Product</a>
+						</li>
+						<li class="active">
+							<a href="/add-product">
+								<i class="fas fa-table"></i>Add product</a>
+						</li>
+						<li>
+							<a href="sold_product.html">
+								<i class="far fa-check-square"></i>Sold products</a>
+						</li>
+						<li>
+							<a href="calendar.html">
+								<i class="fas fa-calendar-alt"></i>Cargo</a>
+						</li>
 
-        <div class="row" id="cat_feat_form">
+						<li>
+							<a href="report.html">
+								<i class="fas fa-copy"></i>Report</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
+		<!-- END MENU SIDEBAR-->
 
-            <script type="text/javascript">
-                var arr = [];
-                function add_me(name) {
-                    arr.push(name);
-                }
+		<!-- PAGE CONTAINER-->
+		<div class="page-container">
+			<!-- HEADER DESKTOP-->
+			<header class="header-desktop" id="header_desktop">
+				<div class="section__content section__content--p30">
+					<div class="container-fluid">
+						<div class="header-wrap">
+							<form class="form-header" action="" method="POST">
+								<input class="au-input au-input--xl" type="text" name="search"
+									placeholder="Search for datas &amp; reports..." />
+								<button class="au-btn--submit" type="submit">
+									<i class="zmdi zmdi-search"></i>
+								</button>
+							</form>
+							<div class="header-button">
+								<div class="noti-wrap">
+									<div class="noti__item js-item-menu">
+										<i class="zmdi zmdi-comment-more"></i>
+										<span class="quantity">1</span>
+										<div class="mess-dropdown js-dropdown">
+											<div class="mess__title">
+												<p>2 mesajınız var</p>
+											</div>
+											<div class="mess__item">
+												<div class="image img-cir img-40">
+													<img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+												</div>
+												<div class="content">
+													<h6>Michelle Moreno</h6>
+													<p>Have sent a photo</p>
+													<span class="time">3 min ago</span>
+												</div>
+											</div>
+											<div class="mess__item">
+												<div class="image img-cir img-40">
+													<img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
+												</div>
+												<div class="content">
+													<h6>Diane Myers</h6>
+													<p>You are now connected on message</p>
+													<span class="time">Yesterday</span>
+												</div>
+											</div>
+											<div class="mess__footer">
+												<a href="#">View all messages</a>
+											</div>
+										</div>
+									</div>
+									<div class="noti__item js-item-menu">
+										<i class="zmdi zmdi-email"></i>
+										<span class="quantity">1</span>
+										<div class="email-dropdown js-dropdown">
+											<div class="email__title">
+												<p>3 emailiniz var</p>
+											</div>
+											<div class="email__item">
+												<div class="image img-cir img-40">
+													<img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+												</div>
+												<div class="content">
+													<p>Meeting about new dashboard...</p>
+													<span>Cynthia Harvey, 3 min ago</span>
+												</div>
+											</div>
+											<div class="email__item">
+												<div class="image img-cir img-40">
+													<img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+												</div>
+												<div class="content">
+													<p>Meeting about new dashboard...</p>
+													<span>Cynthia Harvey, Yesterday</span>
+												</div>
+											</div>
+											<div class="email__item">
+												<div class="image img-cir img-40">
+													<img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+												</div>
+												<div class="content">
+													<p>Meeting about new dashboard...</p>
+													<span>Cynthia Harvey, April 12,,2018</span>
+												</div>
+											</div>
+											<div class="email__footer">
+												<a href="#">See all emails</a>
+											</div>
+										</div>
+									</div>
+									<div class="noti__item js-item-menu">
+										<i class="zmdi zmdi-notifications"></i>
+										<span class="quantity">3</span>
+										<div class="notifi-dropdown js-dropdown">
+											<div class="notifi__title">
+												<p>3 bildiriminiz var</p>
+											</div>
+											<div class="notifi__item">
+												<div class="bg-c1 img-cir img-40">
+													<i class="zmdi zmdi-email-open"></i>
+												</div>
+												<div class="content">
+													<p>You got a email notification</p>
+													<span class="date">April 12, 2018 06:50</span>
+												</div>
+											</div>
+											<div class="notifi__item">
+												<div class="bg-c2 img-cir img-40">
+													<i class="zmdi zmdi-account-box"></i>
+												</div>
+												<div class="content">
+													<p>Your account has been blocked</p>
+													<span class="date">April 12, 2018 06:50</span>
+												</div>
+											</div>
+											<div class="notifi__item">
+												<div class="bg-c3 img-cir img-40">
+													<i class="zmdi zmdi-file-text"></i>
+												</div>
+												<div class="content">
+													<p>You got a new file</p>
+													<span class="date">April 12, 2018 06:50</span>
+												</div>
+											</div>
+											<div class="notifi__footer">
+												<a href="#">Bütün bildirimlər</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="account-wrap">
+									<div class="account-item clearfix js-item-menu">
+										<div class="image">
+											<img src="images/icon/avatar-01.jpg" alt="John Doe" />
+										</div>
+										<div class="content">
+											<a class="js-acc-btn" href="#">john doe</a>
+										</div>
+										<div class="account-dropdown js-dropdown">
+											<div class="info clearfix">
+												<div class="image">
+													<a href="#">
+														<img src="images/icon/avatar-01.jpg" alt="John Doe" />
+													</a>
+												</div>
+												<div class="content">
+													<h5 class="name">
+														<a href="#">john doe</a>
+													</h5>
+													<span class="email">johndoe@example.com</span>
+												</div>
+											</div>
+											<div class="account-dropdown__body">
+												<div class="account-dropdown__item">
+													<a href="#">
+														<i class="zmdi zmdi-account"></i>Account</a>
+												</div>
+												<div class="account-dropdown__item">
+													<a href="#">
+														<i class="zmdi zmdi-settings"></i>Setting</a>
+												</div>
+												<div class="account-dropdown__item">
+													<a href="#">
+														<i class="zmdi zmdi-money-box"></i>Billing</a>
+												</div>
+											</div>
+											<div class="account-dropdown__footer">
+												<a href="#">
+													<i class="zmdi zmdi-power"></i>Logout</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- HEADER DESKTOP-->
 
-            </script>
-            <div class="form-group col-md-3">
-                <label for="barcode">Barkod <span style="color: red;">*</span></label>
-                <input type="number" id="barcode" class="form-control" name="barcode">
-            </div>
+			<!-- MAIN CONTENT-->
+			<div class="main-content">
+				<div class="row">
+					<div class="container">
+						<form method="post" enctype="multipart/form-data">
+							<div class="card my-2">
+								<div class="card-header"><strong>Məhsul</strong> - əlavə et</div>
+								<div class="card-body">
+									<div class="card-title">
+										<h3 class="text-center title-2">Kateqoriyalar</h3>
+									</div>
+									<hr>
 
-            <div class="form-group col-md-3">
-                <label for="title">Ad <span style="color: red;">*</span></label>
-                <input type="text" id="title" class="form-control" name="name">
-            </div>
+									<div class="row">
+										<div class="form-group col-md-3">
+											<select name="category" id="parent" class="form-control">
+												<optgroup th:each="cat : ${cats}" th:value="${cat.getId()}" th:label="${cat.getName()}">
+													<option th:each="child : ${cat.getSubCategory()}" th:value="${child.getId()}" th:text="${child.getName()}"></option>
+												</optgroup>
+											</select>
+										</div>
+									</div>
+									<hr>
+									<div class="row" id="cat_feat_form">
+<!--										<script type="text/javascript">-->
+<!--											var arr = []; //Burada butun divleri tanimaq ve check etmek ucundur. Ve burada olanlarin hamisi cat_feat evvelceden yazilan olub offer deyil.-->
+<!--											function add_me(name) {-->
+<!--												arr.push(name);-->
+<!--											}-->
 
-            <div class="form-group col-md-3">
-                <label for="price">Qiymət (AZN) <span style="color: red;">*</span></label>
-                <input type="number" id="price" class="form-control" name="price">
-            </div>
+<!--										</script>-->
+										<div class="form-group col-md-3">
+											<label for="barcode">Barkod <span style="color: red;">*</span></label>
+											<input type="number" id="barcode" class="form-control" name="barcode">
+										</div>
 
-            <div class="form-group col-md-3">
-                <label for="stock">Miqdar <span style="color: red;">*</span></label>
-                <input type="number" id="stock" class="form-control" name="inStock">
-            </div>
+										<div class="form-group col-md-3">
+											<label for="title">Ad <span style="color: red;">*</span></label>
+											<input type="text" id="title" class="form-control" name="name">
+										</div>
 
-            <div class="form-group col-md-3">
-                <label for="stock">Description <span style="color: red;">*</span></label>
-                <input type="text" id="desc" class="form-control" name="description">
-            </div>
+										<div class="form-group col-md-3">
+											<label for="price">Qiymət (AZN) <span style="color: red;">*</span></label>
+											<input type="number" id="price" class="form-control" name="price">
+										</div>
 
-            <input id="file" class="file-upload" type="file" accept="image/*" name="pp"/>
-        </div>
+										<div class="form-group col-md-3">
+											<label for="discountprice">Endirim (AZN)</label>
+											<input type="number" id="discountprice" class="form-control" name="discount">
+										</div>
 
-        <span style="color: red; display: block;" id="request_field">* Vacib sahələr</span>
+										<div class="form-group col-md-3">
+											<label for="stock">Miqdar <span style="color: red;">*</span></label>
+											<input type="number" id="stock" class="form-control" name="inStock">
+										</div>
 
-        <div id="buttons" class="flex-container" style="display: flex;">
-            <div id="buttons-left" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-                <button type="button" class="btn btn-primary" id="add_offer" style="margin: 2px;">Digər özəllik daxil et
-                </button>
-            </div>
+										<div class="form-group col-md-3">
+											<label for="desc">Açıqlama</label>
+											<input type="text" id="desc" class="form-control" name="description">
+										</div>
+									</div>
+									<span style="color: red; display: block;" class="my-4" id="request_field">* Vacib sahələr</span>
+									<div class="card ">
+										<div class="card-header"><strong>Məhsul rəsmi</strong> - əlavə et</div>
+										<div class="card-body">
+											<div class="row form-group">
+												<div class="col col-md-3">
+													<img src="" id="original_image" style="display: none;">
+													<img src="" id="compress_image" style="display: none;">
+													<label for="file-input" class=" form-control-label">Rəsm yüklə :</label>
+												</div>
+												<div class="col-12 col-md-9">
+													<input type="file" id="file-input" name="pp"
+														   class="form-control-file" accept="image/*">
+												</div>
 
-            <div id="buttons-right" style="">
-                <button type="submit" class="btn btn-success" id="send_product">Göndər</button>
-            </div>
-        </div>
+											</div>
+											<span id="text_test" style="color: red;" class="m-3">Məhsul rəsmi olmayan məhsul
+											qəbul edilməyəcək! Rəsm: [Max: 5MB]</span>
+											<div class="progress m-2" style="width: 200px; height: 10px;">
+												<div class="progress-bar" role="progressbar" aria-valuenow="0"
+													 aria-valuemin="0" aria-valuemax="100"
+													 style="background-color: #116bff!important;"></div>
+											</div>
 
-    </form>
-    <!------------------------------------------------------------------------------------------------>
-    <!-- offers form -->
-    <div class="modal_feat">
-        <div class="modal_special" id="myModal_offer" style="display: none;">
-            <div class="modal-dialog">
+											<hr>
+											<div style="margin: 50px">
+											</div>
 
-                <!-- Modal content-->
-                <div class="modal-content">
+											<div class="row form-group">
+												<div class="container">
+													<div id="gallery" class="gallery">
+													</div>
+												</div>
+											</div>
 
-                    <div class="modal-body" style="width:500px;">
 
-                        <div class="col-lg-12" style="margin:0!important;">
-                            <!-- TOP CAMPAIGN-->
-                            <!--										<div class="top-campaign">-->
-                            <h3 class="title-3 m-b-30" style="text-align: center; margin-top: 25px;">Əlavə
-                                özəlliklər</h3>
-                            <hr>
-                            <div class="table-responsive" style=" height: 250px; margin:8px;">
-                                <table class="table table-top-campaign" style="overflow: scroll;">
-                                    <tbody id="offer_table">
-                                    <tr>
-                                        <td>Ram</td>
-                                        <td>4GB</td>
-                                        <td><a href="#">Nümunə</a></td>
-                                    </tr>
+										</div>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--										</div>-->
-                            <!--  END TOP CAMPAIGN-->
-                        </div>
+									</div>
+									<div id="buttons" class="flex-container" style="display: flex;">
+										<div id="buttons-left"
+											 style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+											<button type="button" class="btn btn-primary" id="add_offer"
+													style="margin: 2px;">Digər özəllik daxil et</button>
+										</div>
 
-                    </div>
+										<div id="buttons-right" style="">
+											<button type="submit" class="btn btn-success" id="send_product">Göndər</button>
+										</div>
+									</div>
 
-                    <div class="form-group" style="margin: auto;">
 
-                        <input placeholder="Ad" type="text" id="name_feat"
-                               style="padding: 3px; border: 1px solid #d3d3d3">
-                        <input placeholder="Dəyər" type="text" id="value_feat"
-                               style="padding: 3px; border: 1px solid #d3d3d3">
-                        <button type="button" class="btn btn-outline-success btn-sm" id="add_feat_item">+</button>
-                    </div>
 
-                    <div style="margin-bottom: 10px;">
-                    </div>
+									<!------------------------------------------------------------------------------------------------>
+									<!-- offers form -->
+									<div class="modal_feat">
+										<div class="modal_special" id="myModal_offer" style="display: none;">
+											<div class="modal-dialog">
 
-                    <div class="modal-footer form-group">
-                        <button id="add_feat_modal" type="button" class="btn btn-primary" style="padding: 10px;">Saxla
-                        </button>
-                    </div>
-                </div>
+												<!-- Modal content-->
+												<div class="modal-content">
 
-            </div>
-        </div>
-    </div>
-    <!------------------------------------------------------------------------------------------------>
+													<div class="modal-body" style="width:500px;">
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#parent").change(function () {
-                $.get("/getChilds", {select: $("#parent").val()}, function (data) {
-                    $("#subParent").empty();
-                    $.each(data, function (index, row) {
-                        $("#subParent").append("<option value='" + row.id + "'>" + row.name + " </option>");
-                    });
-                });
-            });
+														<div class="col-lg-12" style="margin:0!important;">
+															<!-- TOP CAMPAIGN-->
+															<!--										<div class="top-campaign">-->
+															<h3 class="title-3 m-b-30"
+																style="text-align: center; margin-top: 25px;">Əlavə
+																özəlliklər</h3>
+															<hr>
+															<div class="table-responsive"
+																 style=" height: 250px; margin:8px;">
+																<table class="table table-top-campaign"
+																	   style="overflow: scroll;">
+																	<tbody id="offer_table">
+																	<tr>
+																		<td>Ram</td>
+																		<td>4GB</td>
+																		<td><a href='#'>Nümunə</a></td>
+																	</tr>
 
-            $("#subParent").change(function () {
-                $.get("/getChilds", {select: $("#subParent").val()}, function (data) {
-                    $("#child").empty();
-                    $.each(data, function (index, row) {
-                        $("#child").append("<option value='" + row.id + "'>" + row.name + " </option>");
-                    });
-                });
-            })
-        });
-    </script>
-</div>
+																	</tbody>
+																</table>
+															</div>
+															<!--										</div>-->
+															<!--  END TOP CAMPAIGN-->
+														</div>
+
+													</div>
+
+													<div class="form-group" style="margin: auto;">
+
+														<input placeholder="Ad" type="text" id="name_feat"
+															   style="padding: 3px; border: 1px solid #d3d3d3">
+														<input placeholder="Dəyər" type="text" id="value_feat"
+															   style="padding: 3px; border: 1px solid #d3d3d3">
+														<button type="button" class="btn btn-outline-success btn-sm"
+																id="add_feat_item">+</button>
+													</div>
+
+													<div style="margin-bottom: 10px;">
+													</div>
+
+													<div class="modal-footer form-group">
+														<button id="add_feat_modal" type="button" class="btn btn-primary"
+																style="padding: 10px;">Saxla</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<!------------------------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
+
+
+								</div>
+
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<!--</div>-->
+			</div>
+			<!-- END MAIN CONTENT-->
+
+
+
+
+
+
+
+
+
+			<!-- END PAGE CONTAINER-->
+		</div>
+
+	</div>
+
+	<!--Scripts Begin-->
+	<!-- Jquery JS-->
+	<script src="/seller/vendor/jquery-3.2.1.min.js"></script>
+	<!-- Bootstrap JS-->
+	<script src="/seller/vendor/bootstrap-4.1/popper.min.js"></script>
+	<script src="/seller/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+	<!-- /admin_sailer/assets/vendor JS       -->
+	<script src="/seller/vendor/slick/slick.min.js">
+	</script>
+	<script src="/seller/vendor/wow/wow.min.js"></script>
+	<script src="/seller/vendor/animsition/animsition.min.js"></script>
+	<script src="/seller/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+	</script>
+	<script src="/seller/vendor/counter-up/jquery.waypoints.min.js"></script>
+	<script src="/seller/vendor/counter-up/jquery.counterup.min.js">
+	</script>
+	<script src="/seller/vendor/circle-progress/circle-progress.min.js"></script>
+	<script src="/seller/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+	<script src="/seller/vendor/chartjs/Chart.bundle.min.js"></script>
+	<script src="/seller/vendor/select2/select2.min.js">
+	</script>
+
+	<!--Toastr JS-->
+	<script src="/seller/toastr/toastr.min.js"></script>
+
+	<!--Sweetalert JS-->
+	<script src="/seller/sweetalert/sweetalert.min.js"></script>
+
+	<!-- Main JS-->
+	<script src="/seller/js/main.js"></script>
+	<script>
+
+
+		function show_list(url_val, id_content) {
+			$.ajax({
+				type: "POST",
+				url: "http://18.220.67.99/admin_sailer/set_cat/" + url_val,
+				contentType: false,
+				processData: false,
+				data: false,
+
+				success: function (res) {
+					$("#" + id_content).html(res);
+				},
+
+
+
+
+			});
+		}
+
+
+		function show_list_spec(url_val, id_content, data) {
+			var send = new FormData();
+			send.append("data", data);
+			$.ajax({
+				type: "POST",
+				url: "http://18.220.67.99/admin_sailer/set_cat/" + url_val,
+				contentType: false,
+				processData: false,
+				data: send,
+
+				success: function (res) {
+					$("#" + id_content).html(res);
+				},
+
+
+
+			});
+		}
+
+
+		function get_content() {
+			show_list("ajax_parent_list", "parent_list");
+			show_list("ajax_parent2_list", "parent2_list");
+			show_list("ajax_parent_content", "parent_content");
+			show_list("ajax_child_list", "child_list");
+			show_list("ajax_child_content", "child_content");
+		}
+		get_content();
+
+
+
+		function add_parent() {
+			var data = new FormData();
+			data.append("parent", $("#parent-input").val());
+
+			$.ajax({
+				type: "POST",
+				url: "http://18.220.67.99/admin_sailer/Set_cat/add_parent_cat",
+				contentType: false,
+				processData: false,
+				data: data,
+
+				success: function (res) {
+					show_list("ajax_parent_list", "parent_list");
+					alert("Tamam");
+				},
+
+				error: function (error) {
+					alert(error.status);
+				}
+
+
+
+			});
+		}
+
+		function add_child() {
+			var data = new FormData();
+			data.append("id_parent", $("select#selectParentSub").val());
+			data.append("value", $("#child-input").val());
+
+			$.ajax({
+				type: "POST",
+				url: "http://18.220.67.99/admin_sailer/Set_cat/add_child_cat",
+				contentType: false,
+				processData: false,
+				data: data,
+
+				success: function (res) {
+					show_list_spec("ajax_parent_content", "parent_content", $("select#selectParent").val());
+					show_list("ajax_child_list", "child_list");
+					alert("Tamam");
+
+				},
+
+				error: function (error) {
+					alert(error.status);
+				}
+
+			});
+
+		}
+
+
+
+
+
+		function add_feat() {
+			var send = new FormData();
+			send.append("feature", $("#feature").val());
+			send.append("value_feat", $("#value_feat").val());
+			send.append("cat_id", $("select#child_list22").val());
+			$.ajax({
+				type: "POST",
+				url: "http://18.220.67.99/admin_sailer/Set_cat/add_feature",
+				contentType: false,
+				processData: false,
+				data: send,
+
+				success: function (res) {
+					$("#feature").val("");
+					$("#value_feat").val("");
+					show_list_spec("ajax_feat_content", "child_content", $("select#child_list22").val());
+					alert("Tamam");
+
+				},
+
+				error: function (err) {
+					alert(err.status);
+				}
+
+
+			});
+
+		}
+
+
+		function del_parent(id) {
+			var send = new FormData();
+			send.append("id", id);
+			$.ajax({
+				type: "POST",
+				url: "http://18.220.67.99/admin_sailer/Set_cat/del_parent",
+				contentType: false,
+				processData: false,
+				data: send,
+
+				success: function (res) {
+					show_list_spec("ajax_parent_content", "parent_content", $("select#selectParent").val());
+					alert("Tamam");
+
+				},
+
+				error: function (err) {
+					alert(err.status);
+				}
+
+
+			});
+		}
+
+
+		function del_feet(id) {
+			var send = new FormData();
+			send.append("id", id);
+			$.ajax({
+				type: "POST",
+				url: "http://18.220.67.99/admin_sailer/Set_cat/del_feet",
+				contentType: false,
+				processData: false,
+				data: send,
+
+				success: function (res) {
+					show_list_spec("ajax_feat_content", "child_content", $("select#child_list22").val());
+					alert("Tamam");
+
+				},
+
+				error: function (err) {
+					alert(err.status);
+				}
+
+
+			});
+		}
+
+
+
+
+
+		function add_sub_category() {
+			var data = new FormData();
+			data.append("sub_cat_value", $("#sub_cat-input").val());
+			data.append("parent_id", $("select#selectParent").val());
+
+			$.ajax({
+				type: "POST",
+				url: "http://18.220.67.99/admin_sailer/Set_cat/add_sub_cat",
+				contentType: false,
+				processData: false,
+				data: data,
+
+				success: function (res) {
+					show_list("ajax_parent_list", "parent_list");
+					show_list_spec("ajax_subcat_list", "parent2_list", $("select#selectParent").val())
+					alert("Tamam");
+
+				},
+
+				error: function (error) {
+					alert(error.status);
+				}
+
+
+
+			});
+		}
+
+
+
+
+	</script>
+	<!-- /////// -------------->
+	<script>
+		//"/Add_product/show_list"
+
+		var base_url = "http://18.220.67.99/admin_sailer";
+		var dic = {}; // Bu dic offer uchundur
+		function ajax_load(url, is_data, name, content_name) {
+			// Sadece listeleme funksiyasi. Bu funksiya bir nece defe cagirila biler. Example => ajax_load("/Add_product/show_list", false, "show_parent_list", "select_parent");
+			var send_data = new FormData();
+			send_data.append("data", is_data);
+			send_data.append("name", name);
+
+			$.ajax({
+				type: "POST",
+				url: base_url + url,
+				contentType: false,
+				processData: false,
+				data: send_data,
+
+				success: function (res) {
+					$("#" + content_name).html(res);
+				},
+
+
+			});
+
+
+
+		}
+		ajax_load("/Add_product/show_list", false, "show_parent_list_model", "select_parent");
+
+		//--------------
+
+		$("#select_parent").change(function () {
+			var id = $("select#select_parent").val();
+			ajax_load("/Add_product/show_list", id, "show_child_list_model", "select_child");
+		});
+
+		$("#select_child").change(function () {
+			var id = $("select#select_child").val();
+			ajax_load("/Add_product/show_list", id, "show_sub_child_list_model", "select_sub_child");
+		});
+		//---------------------
+
+
+		//----------------------------
+
+		$("#add_offer").click(function () {
+			$("#myModal_offer").css("display", "block");
+			$("#header_desktop").css("z-index", "0");
+		});
+
+		$("#add_feat_modal").click(function () {
+			$("#myModal_offer").css("display", "none");
+			$("#header_desktop").css("z-index", "1");
+
+		});
+		// $("#add_photo_modal").click(function(){
+		//     $("#modal_photo_upload").css("display", "block");
+		//     $("#header_desktop").css("z-index", "0");
+		// });
+
+
+
+
+
+
+		$("#add_feat_item").click(function () {
+			var cn = $("#offer_table").html();
+			var name = $("#name_feat").val();
+			var value = $("#value_feat").val();
+
+			var event = "del_offer('offer-" + name + "')";
+
+			dic[name] = value;
+			cn += "<tr id=offer-" + name + ">" +
+				"<td>" + name + "</td>" +
+				"<td>" + value + "</td>" +
+				"<td><a href='#' onclick=" + event + ">Sil</a></td>" +
+				"</tr>";
+
+			$("#offer_table").html(cn);
+			$("#name_feat").val("");
+			$("#value_feat").val("");
+
+
+		});
+
+		function del_offer(name) {
+			$("#" + name).remove();
+			var dic_name = name.substring(6);
+			delete dic[dic_name];
+		}
+
+		$("#send_product").click(function () {
+			const barcode = $("#barcode").val().trim();
+			const title = $("#title").val().trim();
+			const price = $("#price").val().trim();
+			const discount_price = $("#discountprice").val().trim();
+			const description = $("#description").val().trim();
+			const stock = $("#stock").val().trim();
+			// var isNumeric = discount_price.match(/^\d+$/);
+
+			if (barcode === "" || title === "" || price === "") {
+				alert("* Sahələri tam doldurun.");
+				return;
+			}
+			var send_data = new FormData();
+			send_data.append("main-barcode", barcode);
+			send_data.append("main-name", title);
+			send_data.append("main-price", price);
+			send_data.append("main-discountPrice", discount_price);
+			send_data.append("main-inStock", stock);
+			send_data.append("main-description", description);
+
+			send_data.append("cat-id", $("select#select_sub_child").val());
+
+			// Category feati for ile arr massivinden oxuyacayiq sonra formdataya add edib ajax ile
+			// PHP-e gondereceyik
+			for (var i = 0; i < arr.length; i++) {
+				var ss = arr[i].split("|").length;
+				// alert(arr[i] + " " + ss);
+				if (ss === 1) {
+					var cat_feat_name = $("#" + arr[i]).val();
+					send_data.append("feat-" + arr[i], cat_feat_name);
+				} else {
+					var get_name = arr[i].split("|");
+					var cat_feat_name_sp = $("#" + get_name[0]).val();
+					send_data.append("feat-" + get_name[0], cat_feat_name_sp);
+				}
+
+			}
+			//Read - Dic
+			const dic_keys = Object.keys(dic);
+			for (var ii = 0; ii < dic_keys.length; ii++) {
+				send_data.append("offer-" + dic_keys[ii], dic[dic_keys[ii]]);
+			}
+			// Son Read - Dic
+
+			$.ajax({
+				type: "POST",
+				url: base_url + "/add_product/add_pro",
+				processData: false,
+				contentType: false,
+				data: send_data,
+
+				success: function (data) {
+					var show_mess = data.trim();
+					if (show_mess === "success")
+						window.location = "http://18.220.67.99/admin_sailer/Add_photo";
+					else
+						alert(data);
+				},
+
+				error: function (err) {
+					alert("ERROR - " + err.status);
+				}
+
+			});
+
+
+
+		});
+
+
+
+
+
+
+
+
+
+	</script>
+	<style type="text/css">
+		.flex-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			flex-wrap: wrap;
+		}
+
+		.flex-container>div {
+			margin: 20px;
+		}
+
+		/*------------------------------*/
+
+
+
+		.close {
+			color: black !important;
+
+		}
+
+
+		.margin_top {
+
+			margin-top: 50px;
+
+		}
+
+
+
+		/* The Modal (background) */
+
+		.modal_special {
+
+			display: block;
+			/* Hidden by default */
+
+			position: fixed;
+			/* Stay in place */
+
+			z-index: 1;
+			/* Sit on top */
+
+			padding-top: 100px;
+			/* Location of the box */
+
+			left: 0;
+
+			top: 0;
+
+			width: 100%;
+			/* Full width */
+
+			height: 100%;
+			/* Full height */
+
+			overflow: auto;
+			/* Enable scroll if needed */
+
+			background-color: rgb(0, 0, 0);
+			/* Fallback color */
+
+			background-color: rgba(0, 0, 0, 0.4);
+			/* Black w/ opacity */
+
+		}
+
+
+
+		/* Modal Content */
+
+		.modal-content {
+
+			position: relative;
+
+			background-color: #fefefe;
+
+			margin: auto;
+
+			padding: 0;
+
+			border: 1px solid #888;
+
+			border-radius: 5px;
+
+			width: fit-content;
+
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+			-webkit-animation-name: animatetop;
+
+			-webkit-animation-duration: 0.4s;
+
+			animation-name: animatetop;
+
+			animation-duration: 0.4s
+		}
+
+
+
+		/* Add Animation */
+
+		@-webkit-keyframes animatetop {
+
+			from {
+				top: -300px;
+				opacity: 0
+			}
+
+			to {
+				top: 0;
+				opacity: 1
+			}
+
+		}
+
+
+
+		@keyframes animatetop {
+
+			from {
+				top: -300px;
+				opacity: 0
+			}
+
+			to {
+				top: 0;
+				opacity: 1
+			}
+
+		}
+
+
+
+		/* The Close Button */
+
+		.close {
+
+			color: white;
+
+			float: right;
+
+			font-size: 28px;
+
+			font-weight: bold;
+
+		}
+
+
+
+		.close:hover,
+
+		.close:focus {
+
+			color: #000;
+
+			text-decoration: none;
+
+			cursor: pointer;
+
+		}
+
+
+
+		.modal-header {
+
+			padding: 2px 16px;
+
+		}
+
+
+
+		.modal-body {
+			padding: 2px 16px;
+		}
+
+
+
+		.modal-footer {
+
+			padding: 10px 15px 10px 10px;
+
+		}
+	</style>
+
+
+
+
+	<!--Scripts End-->
 </body>
+
 </html>
+<!-- end document-->

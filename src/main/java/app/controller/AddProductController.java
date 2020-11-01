@@ -35,7 +35,7 @@ public class AddProductController {
         product.setPhoto(cloudinaryService.uploadFile(file));
         product.setCategory(categoryService.getById(category));
         productService.insert(product);
-        return new RedirectView("/success");
+        return new RedirectView("/products");
     }
 
     @GetMapping("all")

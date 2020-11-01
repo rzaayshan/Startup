@@ -1,15 +1,11 @@
 package app.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -20,10 +16,11 @@ public class Product {
     @Column(name = "p_id")
     private long id;
     private String name;
-    private String price;
+    private int price;
     private String barcode;
     private int inStock;
     private String photo;
+    private int discount;
 
     @Column(columnDefinition = "text")
     private String description;

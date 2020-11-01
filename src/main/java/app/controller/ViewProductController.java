@@ -1,17 +1,11 @@
 package app.controller;
 
-import app.entity.Category;
-import app.entity.Product;
 import app.service.CategoryService;
 import app.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -21,8 +15,10 @@ public class ViewProductController {
     private final CategoryService categoryService;
 
     @GetMapping("products")
-    public List<Product> vb(){
-        return productService.getAll();
+    public ModelAndView vb(){
+        ModelAndView mav = new ModelAndView("product");
+        mav.addObject("products", productService.getAll());
+        return mav;
     }
 
     @GetMapping("cats")
