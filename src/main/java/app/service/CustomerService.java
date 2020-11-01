@@ -25,13 +25,13 @@ public class CustomerService {
 
         if(customerRepo.findCustomerByEmail(email).isPresent()) throw new EmailIsUsedException();
 
-        Customer customer = new Customer(name, surname, email, passwordEncoder.encode(password));
+        Customer customer = new Customer(name, surname, email, passwordEncoder.encode(password), "CUSTOMER", new Bag());
         customer.setBag(new Bag(customer));
         customerRepo.save(customer);
     }
 
 
-    public Optional<Customer> findUserForLogin(String email) {
+    public Optional<Customer> findCustomerByEmail(String email) {
         return customerRepo.findCustomerByEmail(email);
     }
 }

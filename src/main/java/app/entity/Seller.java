@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +14,7 @@ import java.util.Set;
 public class Seller{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "u_id")
+    @Column(name = "s_id")
     private long id;
     private String name;
     private String surname;
@@ -26,9 +25,19 @@ public class Seller{
     private String address;
     private String tin;
     private String token;
+    private String role;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
     private List<Product> products;
+
+    @ManyToOne
+    @JoinTable(name = "r_seller_style",
+            joinColumns = {@JoinColumn(name = "seller_id",
+                    referencedColumnName = "s_id")},
+            inverseJoinColumns = {@JoinColumn(name = "style_id",
+                    referencedColumnName = "s_id")
+            })
+    private Style style;
 
     public Seller(String name, String surname, String email, String password, String company, String phone, String address, String tin) {
         this.name = name;
@@ -54,6 +63,17 @@ public class Seller{
 
     }
 
-//    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
-//    private Set<Role> roles;
+    public Seller(String name, String surname, String email, String password, String company, String phone, String address, String tin, String token, String role, Style style) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.company = company;
+        this.phone = phone;
+        this.address = address;
+        this.tin = tin;
+        this.token = token;
+        this.role = role;
+        this.style = style;
+    }
 }

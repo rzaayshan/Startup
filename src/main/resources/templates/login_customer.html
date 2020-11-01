@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +15,7 @@
     <meta name="author" content="SW-THEMES">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/icons/favicon.ico}">
 
 
     <script type="text/javascript">
@@ -29,11 +31,11 @@
     </script>
 
     <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="assets/css/style.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendor/fontawesome-free/css/all.min.css}">
 </head>
 
 
@@ -156,7 +158,7 @@
                             </button>
 
                             <a href="index.html" class="logo">
-                                <img src="assets/images/logo.png" alt="Porto Logo">
+                                <img th:src="@{/images/logo.png}" alt="Porto Logo">
                             </a>
                         </div><!-- End .headeer-center -->
 
@@ -219,7 +221,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-4 p-0">
-                                                    <img src="assets/images/menu-banner.jpg" alt="Menu banner">
+                                                    <img th:src="@{/images/menu-banner.jpg}"  alt="Menu banner">
                                                 </div>
                                             </div>
                                         </div><!-- End .megamenu -->
@@ -266,7 +268,7 @@
                                                 </div><!-- End .col-lg-4 -->
 
                                                 <div class="col-lg-3 p-0">
-                                                    <img src="assets/images/menu-bg.png" alt="Menu banner"
+                                                    <img th:src="@{/images/menu-bg.png}" alt="Menu banner"
                                                         class="product-promo">
                                                 </div><!-- End .col-lg-4 -->
                                             </div><!-- End .row -->
@@ -339,7 +341,7 @@
 
                                                 <figure class="product-image-container">
                                                     <a href="product.html" class="product-image">
-                                                        <img src="assets/images/products/cart/product-1.jpg"
+                                                        <img th:src="@{/images/products/cart/product-1.jpg}"
                                                             alt="product" width="80" height="80">
                                                     </a>
                                                     <a href="#" class="btn-remove icon-cancel"
@@ -361,7 +363,7 @@
 
                                                 <figure class="product-image-container">
                                                     <a href="product.html" class="product-image">
-                                                        <img src="assets/images/products/cart/product-2.jpg"
+                                                        <img th:src="@{/images/products/cart/product-2.jpg}"
                                                             alt="product" width="80" height="80">
                                                     </a>
                                                     <a href="#" class="btn-remove icon-cancel"
@@ -404,13 +406,13 @@
 
                         <h2 class="title mb-2 text-center">Giriş - İstifadəçi</h2>
                         <!--            <h6>İstifadəçilər üçün giriş.</h6>-->
-                        <form action="/login_customer/enter" method="post" class="mb-1">
+                        <form method="post" class="mb-1">
                             <label for="login-email">Email <span class="required">*</span></label>
-                            <input type="text" class="form-input form-wide mb-2" name="login-email" id="login-email">
+                            <input type="text" class="form-input form-wide mb-2" name="email" id="login-email">
 
                             <label for="login-password">Şifrə <span class="required">*</span></label>
                             <input type="password" class="form-input form-wide mb-2" id="login-password"
-                                name="login-password">
+                                name="password">
                             <div class="form-footer">
 
 
@@ -449,7 +451,7 @@
                 <div class="footer-middle">
                     <div class="row">
                         <div class="col-lg-5 m-b-4">
-                            <img src="assets/images/logo-black.png" alt="Logo" class="m-b-4">
+                            <img th:src="@{/images/logo-black.png}" alt="Logo" class="m-b-4">
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pulvinar feugiat quam,
                                 vitae aliquam urna egestas nec. sit amet</p>
@@ -461,7 +463,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <h6 class="text-uppercase mb-0">Payment Methods</h6>
-                                    <img src="assets/images/payments.jpg" alt="payment methods"
+                                    <img th:src="@{/images/payments.jpg}" alt="payment methods"
                                         class="footer-payments m-b-3">
                                 </div>
                             </div>
@@ -662,7 +664,7 @@
     <div class="newsletter-popup mfp-hide" id="newsletter-popup-form"
         style="background: #f1f1f1 no-repeat center/cover url(static/images/newsletter_popup_bg.jpg)">
         <div class="newsletter-popup-content">
-            <img src="assets/images/logo-black.png" alt="Logo" class="logo-newsletter">
+            <img th:src="@{/images/logo-black.png}" alt="Logo" class="logo-newsletter">
             <h2>BE THE FIRST TO KNOW</h2>
             <p>Subscribe to the Porto eCommerce newsletter to receive timely updates from your favorite products.</p>
             <form action="#">
@@ -707,13 +709,13 @@
     <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
     <!-- Plugins JS File -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/optional/isotope.pkgd.min.js"></script>
-    <script src="assets/js/plugins.min.js"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/optional/isotope.pkgd.min.js}"></script>
+    <script th:src="@{/js/plugins.min.js}"></script>
 
     <!-- Main JS File -->
-    <script src="assets/js/main.min.js"></script>
+    <script th:src="@{/js/main.min.js}"></script>
 </body>
 
 </html>
