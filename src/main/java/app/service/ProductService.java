@@ -1,6 +1,7 @@
 package app.service;
 
 import app.entity.Product;
+import app.entity.Seller;
 import app.repo.ProductRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class ProductService {
         productRepo.save(product);
     }
 
-    public List<Product> getAll(){
-        return productRepo.findAll();
+    public List<Product> getAll(Seller seller){
+        return productRepo.findAllBySeller(seller);
     }
 }

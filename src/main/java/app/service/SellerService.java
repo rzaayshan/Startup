@@ -1,6 +1,7 @@
 package app.service;
 
 import app.entity.Style;
+import app.exception.SellerNotFoundException;
 import app.form.FormSeller;
 import app.form.FormStyle;
 import app.repo.StyleRepo;
@@ -12,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -65,5 +67,9 @@ public class SellerService {
 
     public Optional<Seller> findSellerByEmail(String email) {
         return sellerRepo.findSellerByEmail(email);
+    }
+
+    public Seller findbyId(long id){
+        return sellerRepo.findById(id).orElseThrow(SellerNotFoundException::new);
     }
 }
