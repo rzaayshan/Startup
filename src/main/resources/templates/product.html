@@ -383,10 +383,8 @@
                                     <div class="col-6 col-sm-4" th:each = "product : ${products}">
                                         <div class="product-default inner-quickview inner-icon">
                                             <figure>
-                                                <a href="product.html">
-                                                    <img th:src="${product.photo}" >
-                                                </a>
-                                                <a href="ajax/product-quick-view.html" class="btn-quickview"
+                                                <img th:src="${product.photo}">
+                                                <a th:href="${'product/' + product.id}" class="btn-quickview"
                                                     title="Quick View">Quick View</a>
                                             </figure>
                                             <div class="product-details">

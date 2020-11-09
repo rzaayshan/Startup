@@ -2,6 +2,7 @@ package app.service;
 
 import app.entity.Product;
 import app.entity.Seller;
+import app.exception.ProductNotFoundException;
 import app.repo.ProductRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,9 @@ public class ProductService {
 
     public List<Product> getAll(Seller seller){
         return productRepo.findAllBySeller(seller);
+    }
+
+    public Product getById(long id){
+        return productRepo.findById(id).orElseThrow(ProductNotFoundException::new);
     }
 }

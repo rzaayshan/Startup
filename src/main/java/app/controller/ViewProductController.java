@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +28,13 @@ public class ViewProductController {
         Seller seller = sellerService.findbyId(sellerDetails.getId());
         ModelAndView mav = new ModelAndView("product");
         mav.addObject("products", productService.getAll(seller));
+        return mav;
+    }
+
+    @GetMapping("product/{id}")
+    public ModelAndView getProduct(@PathVariable long id){
+        ModelAndView mav = new ModelAndView("seller_quick_view_2");
+        mav.addObject("product", productService.getById(id));
         return mav;
     }
 
