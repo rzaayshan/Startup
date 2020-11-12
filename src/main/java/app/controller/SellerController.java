@@ -39,6 +39,7 @@ public class SellerController {
         String company = seller.getCompany();
         model.addAttribute("style", style);
         model.addAttribute("company", company);
+        model.addAttribute("user", seller);
         return "inbox";
     }
 

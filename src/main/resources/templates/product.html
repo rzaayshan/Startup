@@ -55,6 +55,31 @@
     <!-- Main CSS-->
     <link href="/seller/css/theme.css" rel="stylesheet" media="all">
 
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Sofia:400,500,700&subset=latin-ext');
+        @import url('https://fonts.googleapis.com/css?family=Rowdies:400,500,700&subset=latin-ext');
+        @import url('https://fonts.googleapis.com/css?family=Black+Ops+One:400,500,700&subset=latin-ext');
+        @import url('https://fonts.googleapis.com/css?family=Parisienne:400,500,700&subset=latin-ext');
+        @import url('https://fonts.googleapis.com/css?family=Poiret+One:400,500,700&subset=latin-ext');
+        @import url('https://fonts.googleapis.com/css?family=Monoton:400,500,700&subset=latin-ext');
+        @import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,500,700&subset=latin-ext');
+        @import url('https://fonts.googleapis.com/css?family=Cinzel:400,500,700&subset=latin-ext');
+        .logo-s{
+            margin: auto;
+            position:relative;
+            width:50%;
+            padding-bottom:50%;
+            background:gold;
+            border-radius:50%;
+        }
+        .logo-t{
+            position:absolute;
+            top:50%; left:50%;
+            transform: translate(-50%, -50%);
+            margin:0;
+        }
+    </style>
+
 </head>
 
 <body class="animsition">
@@ -112,9 +137,13 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
-                </a>
+                <!--                <a href="#">-->
+                <div class="logo-s rounded-circle" th:style="'background-color:' + ${style.getColor_back()}">
+                    <h3 class="logo-t" th:style="'color:' + ${style.getColor()} + '; font-family:' + ${style.getFont()}"
+                        th:text="${company}">
+                    </h3>
+                </div>
+                <!--                </a>-->
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -280,23 +309,21 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#" th:text="${user.name + ' ' + user.surname}"></a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
-                                                    <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                                    </a>
+
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#" th:text="${user.name + ' ' + user.surname}"></a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email" th:text="${user.email}"></span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">

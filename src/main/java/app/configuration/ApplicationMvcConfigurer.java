@@ -11,8 +11,8 @@ import java.util.stream.IntStream;
 @EnableWebMvc
 public class ApplicationMvcConfigurer implements WebMvcConfigurer {
   private static final String PREFIX = "classpath:/static";
-  private static final String[] MAPPINGS = {"/colorpick/**","/css/**","/fonts/**","/icons/**","/images/**", "/js/**", "/linkup_images/**","/pictures.sailer.logos/**","/sass/**","/vendor.fontawesome-free/**", "/seller/**"};
-  private static final String[] LOCATIONS = {"/colorpick/","/css/","/fonts/","/icons/","/images/", "/js/", "/linkup_images/","/pictures.sailer.logos/","/sass/","/vendor.fontawesome-free/", "/seller/"};
+  private static final String[] MAPPINGS = {"/colorpick/**","/css/**","/fonts/**","/icons/**","/images/**", "/js/**", "/linkup_images/**","/pictures.sailer.logos/**","/sass/**","/vendor.fontawesome-free/**", "/seller/**", "/vendor/**"};
+  private static final String[] LOCATIONS = {"/colorpick/","/css/","/fonts/","/icons/","/images/", "/js/", "/linkup_images/","/pictures.sailer.logos/","/sass/","/vendor.fontawesome-free/", "/seller/","/vendor/"};
 
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {

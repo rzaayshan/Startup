@@ -4,6 +4,7 @@ import app.cloudinary.service.CloudinaryService;
 import app.entity.Category;
 import app.entity.Product;
 import app.entity.Seller;
+import app.entity.Style;
 import app.security.SellerDetails;
 import app.service.CategoryService;
 import app.service.ProductService;
@@ -29,9 +30,16 @@ public class AddProductController {
     private final SellerService sellerService;
 
     @GetMapping("add-product")
-    public ModelAndView viewBoard(){
+    public ModelAndView viewBoard(Authentication auth){
         ModelAndView mav = new ModelAndView("add_product");
+        SellerDetails sellerDetails = (SellerDetails) auth.getPrincipal();
+        Seller seller = sellerService.findbyId(sellerDetails.getId());
+        Style style = seller.getStyle();
+        String company = seller.getCompany();
+        mav.addObject("style", style);
+        mav.addObject("company", company);
         mav.addObject("cats", categoryService.getAll());
+        mav.addObject("user", seller);
         return mav;
     }
 

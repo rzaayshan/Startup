@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.entity.Seller;
+import app.entity.Style;
 import app.security.SellerDetails;
 import app.service.CategoryService;
 import app.service.ProductService;
@@ -24,10 +25,15 @@ public class ViewProductController {
 
     @GetMapping("products")
     public ModelAndView getProducts(Authentication auth){
+        ModelAndView mav = new ModelAndView("product");
         SellerDetails sellerDetails = (SellerDetails) auth.getPrincipal();
         Seller seller = sellerService.findbyId(sellerDetails.getId());
-        ModelAndView mav = new ModelAndView("product");
+        Style style = seller.getStyle();
+        String company = seller.getCompany();
         mav.addObject("products", productService.getAll(seller));
+        mav.addObject("style", style);
+        mav.addObject("company", company);
+        mav.addObject("user", seller);
         return mav;
     }
 
