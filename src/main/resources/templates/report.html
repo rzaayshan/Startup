@@ -43,7 +43,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="assets/images/icon/logo.png" alt="CoolAdmin" />
+<!--                            <img src="assets/images/icon/logo.png" alt="CoolAdmin" /> -->
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -63,24 +63,24 @@
                         </li>
                         <li>
                             <a href="product.html">
-                                <i class="fas fa-chart-bar"></i>Product</a>
+                                <i class="fas fa-chart-bar"></i>Məhsullar</a>
                         </li>
                         <li>
                             <a href="add_product.html">
-                                <i class="fas fa-table"></i>Add product</a>
+                                <i class="fas fa-table"></i>Məhsul əlavə et</a>
                         </li>
                         <li>
                             <a href="sold_product.html">
-                                <i class="far fa-check-square"></i>Sold products</a>
+                                <i class="far fa-check-square"></i>Satılmış məhsullar</a>
                         </li>
                         <li>
                             <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Cargo</a>
+                                <i class="fas fa-calendar-alt"></i>Karqo</a>
                         </li>
 
                         <li class="active">
                             <a href="report.html">
-                                <i class="fas fa-copy"></i>Report</a>
+                                <i class="fas fa-copy"></i>Hesabat</a>
                         </li>
                     </ul>
                 </div>
@@ -92,7 +92,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="assets/images/icon/logo.png" alt="Cool Admin" />
+<!--                <img src="assets/images/icon/logo.png" alt="Cool Admin" />  -->
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -104,24 +104,24 @@
                         </li>
                         <li>
                             <a href="product.html">
-                                <i class="fas fa-chart-bar"></i>Product</a>
+                                <i class="fas fa-chart-bar"></i>Məhsullar</a>
                         </li>
                         <li>
                             <a href="add_product.html">
-                                <i class="fas fa-table"></i>Add product</a>
+                                <i class="fas fa-table"></i>Məhsul əlavə et</a>
                         </li>
                         <li>
                             <a href="sold_product.html">
-                                <i class="far fa-check-square"></i>Sold products</a>
+                                <i class="far fa-check-square"></i>Satılmış məhsullar</a>
                         </li>
                         <li>
                             <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Cargo</a>
+                                <i class="fas fa-calendar-alt"></i>Karqo</a>
                         </li>
 
                         <li class="active">
                             <a href="report.html">
-                                <i class="fas fa-copy"></i>Report</a>
+                                <i class="fas fa-copy"></i>Hesabat</a>
                         </li>
                     </ul>
                 </nav>
@@ -138,7 +138,7 @@
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
                                 <input class="au-input au-input--xl" type="text" name="search"
-                                    placeholder="Search for datas &amp; reports..." />
+                                    placeholder="Axtarış..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -150,7 +150,7 @@
                                         <span class="quantity">1</span>
                                         <div class="mess-dropdown js-dropdown">
                                             <div class="mess__title">
-                                                <p>You have 2 news message</p>
+                                                <p>2 yeni mesajınız var</p>
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
@@ -259,42 +259,32 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="assets/images/icon/avatar-01.jpg" alt="John Doe" />
+                                            
                                         </div>
-                                        <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
-                                        </div>
-                                        <div class="account-dropdown js-dropdown">
-                                            <div class="info clearfix">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="assets/images/icon/avatar-01.jpg" alt="John Doe" />
-                                                    </a>
-                                                </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#" th:text="${user.name + ' ' + user.surname}"></a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email" th:text="${user.email}"></span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                        <i class="zmdi zmdi-account"></i>Hesab</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                        <i class="zmdi zmdi-settings"></i>Ayarlar</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                        <i class="zmdi zmdi-money-box"></i>Hesab-faktura</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                    <i class="zmdi zmdi-power"></i>Çıxış</a>
                                             </div>
                                         </div>
                                     </div>
@@ -305,7 +295,9 @@
                 </div>
             </header>
             <!-- END HEADER DESKTOP-->
-
+    
+    
+    
             <!-- MAIN CONTENT-->
             <div class="main-content">
 
